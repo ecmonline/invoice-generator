@@ -1,22 +1,31 @@
 #!/usr/bin/env python2
 
+import sys
 import codecs
 import yaml
 import locale
+import argparse
 
 from pybars import Compiler
 from weasyprint import HTML
 
-locale.setlocale(locale.LC_ALL, 'de_DE.UTF-8')
+parser = argparse.ArgumentParser(description='Convert HTML template to pdf with data from yaml')
+parser.add_argument('--template', help='The name of the template to use (e.g. invoice)', default="invoice")
+parser.add_argument('--yaml_file', help='The yaml file to use for data', default=None, type=argparse.FileType('r'))
+parser.add_argument('--output_pdf', help='The output pdf file', default="pdf.pdf",  type=argparse.FileType('w'))
+parser.add_argument('--locale', help='The locale to use', default="de_DE.UTF-8")
 
-template = 'invoice'
+args = parser.parse_args()
+locale.setlocale(locale.LC_ALL, args.locale)
 
-document_url = 'documents/'+template
+document_url = 'documents/'+args.template
 base_url = document_url+'/template'
-
 index_html = base_url+'/index.html'
-data_yml = document_url+'/data.yml'
-output_pdf = 'pdf.pdf'
+
+if args.yaml_file:
+    data_yml = args.yaml_file
+else:
+    data_yml = document_url+'/data.yml'
 
 with codecs.open(data_yml, encoding="utf-8") as yml_file:
     document_data = yaml.load(yml_file)
@@ -61,5 +70,5 @@ with codecs.open(index_html, encoding="utf-8") as index_file:
     html_text = template(document_data)
 
     weasytemplate = HTML(string=html_text, base_url=base_url)
-    weasytemplate.write_pdf(output_pdf)
+    weasytemplate.write_pdf(args.output_pdf)
 
