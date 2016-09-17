@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div>
+            <table class="adressTable">
+                <tr>
+                    <td class="small">{{from.name}}, {{from.street}}, {{from.postcode}} {{from.city}}</td>
+                </tr>
+                <tr><td>{{to.name}}</td></tr>
+                <tr><td>{{to.street}}</td></tr>
+                <tr><td>{{to.postcode}} {{to.city}}</td></tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <table class="infoTable">
+                <tr>
+                    <td><b>Rechnung {{invoice.number}}</b></td>
+                    <td>Kundennummer: {{customer_number}}</td>
+                </tr>
+                <tr>
+                    <td class="small">Das Rechnungsdatum entspricht dem Leistungsdatum.</td>
+                    <td>Rechnungsdatum: {{invoice.date}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="section">
+            <table class="invoiceTable">
+                <thead>
+                    <tr>
+                        <td>Pos</td>
+                        <td>Beschreibung</td>
+                        <td>Anzahl</td>
+                        <td>Einzelpreis</td>
+                        <td>Steuersatz</td>
+                        <td>Netto</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#positions}}
+                    <tr>
+                        <td>{{pos_number}}</td>
+                        <td>{{{text}}}</td>
+                        <td>{{amount}}</td>
+                        <td class="nowrap">{{netto_price}} {{@root.currency}}</td>
+                        <td class="nowrap">{{tax_rate}} %</td>
+                        <td class="nowrap">{{total_netto_price}} {{@root.currency}}</td>
+                    </tr>
+                    {{/positions}}
+                    <tr class="tfoot">
+                        <td class="padrow"></td>
+                    </tr>
+                    <tr class="tfoot">
+                        <td class="noborder"></td>
+                        <td class="noborder"></td>
+                        <td colspan="3"> Nettogesamt</td>                    
+                        <td class="nowrap" colspan="2">{{totals.netto}} {{@root.currency}}</td>                    
+                    </tr>
+                    <tr class="tfoot">
+                        <td class="noborder"></td>
+                        <td class="noborder"></td>
+                        <td colspan="3"> Umsatzsteuer 19%</td>                    
+                        <td class="nowrap" colspan="2">{{totals.tax}} {{@root.currency}}</td>                    
+                    </tr>
+                    <tr class="tfoot">
+                        <td class="noborder"></td>
+                        <td class="noborder"></td>
+                        <td colspan="3"> Rechnungsbetrag</td>                    
+                        <td class="nowrap" colspan="2">{{totals.brutto}} {{@root.currency}}</td>                    
+                    </tr>                                
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <p>Vielen Dank für Ihren Auftrag.</p>
+            <p>Bitte begleichen Sie den offenen Betrag bis zum {{invoice.pay_until_date}}.</p>
+        </div>
+
+    </body>
+</html>

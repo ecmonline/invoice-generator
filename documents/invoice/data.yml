@@ -1,0 +1,33 @@
+from:
+    name: ecm.online GmbH
+    street: Bilker Allee 217
+    postcode: 40215
+    city: Düsseldorf
+
+to:
+    name: Musterkunde
+    street: An der Ecke 1
+    postcode: 12345
+    city: Berlin
+
+customer_number: 10004
+currency: €
+tax_rate: 19
+invoice:
+    number: R10006
+    date: 15.09.2016
+    pay_until_date: 22.09.2016
+
+positions:
+    - netto_price: 215 
+      amount: 1
+      text: |
+        Server Rechenzentrum
+        Windows Server
+        Monat 08.2017
+    - netto_price: 215 
+      amount: 2
+      text: |
+        Eine andere
+        wichtige mit gaaaaanz langer und vielen woerten beschriebenen
+        Dienstleistung        

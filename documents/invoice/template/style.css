@@ -1,0 +1,96 @@
+@page {
+    margin: 5cm 2cm 5cm 2cm;
+
+    @top-right {
+        content: url("logo.png");
+    }
+
+    @bottom-left {
+        white-space: pre;
+        text-align: left;
+        content: "ecm.online GmbH" "\a"
+                 "Bilker Allee 217" "\a"
+                 "40215 Düsseldorf" "\a"
+                 "USt-IdNr: DE304939027" "\a"
+                 "\a" "\a"
+    }
+
+    @bottom-center {
+        white-space: pre;
+        text-align: left;
+        content: "Geschäftsführung" "\a"
+                 "Marc Bartrina, Daniel Huhn" "\a"
+                 "Amtsgericht Düsseldorf HRB 76874" "\a"
+                 "\a\a"
+                 "Seite " counter(page)
+                 " von " counter(pages)
+    }
+
+    @bottom-right {
+        white-space: pre;
+        text-align: left;
+        content: "IBAN:DE89430510400000302794" "\a"
+                 "BIC: WELADED1HTG" "\a"
+                 "Bank: Sparkasse Hattingen" "\a"
+                 "\a" "\a" "\a"
+                 
+    }    
+}
+
+html {
+    font-size: 10pt;
+    font-family: "Arial";
+}
+
+.section {
+    margin-top: 1cm;
+}
+
+/**
+ * Address table
+ */
+ .adressTable tr:nth-child(1) td {
+     border-bottom: 1px solid black;
+ }
+
+ .small {
+     font-size: 8pt;
+ }
+
+/**
+ * Info table
+ */
+.infoTable {
+    margin-top: 3cm;
+    width: 100%;
+}
+
+/**
+ * Invoice table
+ */
+.invoiceTable {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.invoiceTable td {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.invoiceTable thead {
+    background: lightgray;
+}
+
+.invoiceTable .padrow {
+    height: 10px;
+}
+
+.invoiceTable .tfoot td {
+    border: none;
+    padding: 2px;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
