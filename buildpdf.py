@@ -23,12 +23,11 @@ base_url = document_url+'/template'
 index_html = base_url+'/index.html'
 
 if args.yaml_file:
-    data_yml = args.yaml_file
+    yml_file = args.yaml_file
 else:
-    data_yml = document_url+'/data.yml'
+    yml_file = codecs.open(document_url+'/data.yml', encoding="utf-8")
 
-with codecs.open(data_yml, encoding="utf-8") as yml_file:
-    document_data = yaml.load(yml_file)
+document_data = yaml.load(yml_file)
 
 pos_number = 1
 document_data['totals'] = {
