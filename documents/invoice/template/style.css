@@ -8,6 +8,7 @@
     @bottom-left {
         white-space: pre;
         text-align: left;
+        font-size: 8pt;
         content: "ecm.online GmbH" "\a"
                  "Bilker Allee 217" "\a"
                  "40215 Düsseldorf" "\a"
@@ -18,6 +19,7 @@
     @bottom-center {
         white-space: pre;
         text-align: left;
+        font-size: 8pt;
         content: "Geschäftsführung" "\a"
                  "Marc Bartrina, Daniel Huhn" "\a"
                  "Amtsgericht Düsseldorf HRB 76874" "\a"
@@ -29,6 +31,7 @@
     @bottom-right {
         white-space: pre;
         text-align: left;
+        font-size: 8pt;
         content: "IBAN:DE89430510400000302794" "\a"
                  "BIC: WELADED1HTG" "\a"
                  "Bank: Sparkasse Hattingen" "\a"
