@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 import sys
 import codecs
@@ -11,8 +11,8 @@ from weasyprint import HTML
 
 parser = argparse.ArgumentParser(description='Convert HTML template to pdf with data from yaml')
 parser.add_argument('--template', help='The name of the template to use (e.g. invoice)', default="invoice")
-parser.add_argument('--yaml_file', help='The yaml file to use for data', default=None, type=argparse.FileType('r'))
-parser.add_argument('--output_pdf', help='The output pdf file', default="pdf.pdf",  type=argparse.FileType('w'))
+parser.add_argument('--yaml_file', help='The yaml file to use for data', default="documents/invoice/data.yml", type=str)
+parser.add_argument('--output_pdf', help='The output pdf file', default="pdf.pdf", type=str)
 parser.add_argument('--locale', help='The locale to use', default="de_DE.UTF-8")
 
 args = parser.parse_args()
@@ -22,12 +22,8 @@ document_url = 'documents/'+args.template
 base_url = document_url+'/template'
 index_html = base_url+'/index.html'
 
-if args.yaml_file:
-    yml_file = args.yaml_file
-else:
-    yml_file = codecs.open(document_url+'/data.yml', encoding="utf-8")
-
-document_data = yaml.load(yml_file)
+with open(args.yaml_file) as file:
+    document_data = yaml.load(file, Loader=yaml.FullLoader)
 
 pos_number = 1
 document_data['totals'] = {
@@ -70,4 +66,3 @@ with codecs.open(index_html, encoding="utf-8") as index_file:
 
     weasytemplate = HTML(string=html_text, base_url=base_url)
     weasytemplate.write_pdf(args.output_pdf)
-
