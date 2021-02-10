@@ -24,3 +24,10 @@ Usage see `./buildpdf.py --help`:
     --output_pdf OUTPUT_PDF
                             The output pdf file
     --locale LOCALE       The locale to use
+
+**Docker**
+
+```
+docker build -t invoice .
+docker run -it --rm -v /Users/philippbraun/Desktop/invoice-generator:/root -p 8000:8000 invoice
+```
